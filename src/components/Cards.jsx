@@ -56,7 +56,7 @@ const Cards = ({ type, video }) => {
   useEffect(() => {
     const fetchVideos = async () => {
       const res = await axios.get(
-        `http://localhost:8800/api/user/find/${video.userId}`
+        `https://funtubebackend.onrender.com/api/user/find/${video.userId}`
       );
       setUser(res.data);
     };

@@ -174,11 +174,14 @@ const Video = () => {
       try {
         dispatch(fetchStart());
         const videoRes = await axios.get(`${root}video/find/${path}`);
+        console.log(videoRes.data);
+        console.log(path);
         const channelInfo = await axios.get(
           `${root}user/find/${videoRes.data.userId}`
         );
         setChannel(channelInfo.data);
         dispatch(fetchSuccess(videoRes.data));
+        console.log(currentVideo);
       } catch (e) {
         dispatch(fetchFailure(e));
       }

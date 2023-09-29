@@ -13,9 +13,12 @@ const Home = ({ type }) => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`http://localhost:8800/api/video/${type}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `https://funtubebackend.onrender.com/api/video/${type}`,
+        {
+          withCredentials: true,
+        }
+      );
       setvideos(res.data);
     };
     fetchVideos();

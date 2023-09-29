@@ -94,7 +94,7 @@ const SignIn = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8800/api/auth/signin",
+        "https://funtubebackend.onrender.com/api/auth/signin",
         {
           email: name,
           password: pass,
@@ -111,7 +111,6 @@ const SignIn = () => {
 
   const root = process.env.REACT_APP_URL;
   const GoogleLogin = async () => {
-    console.log(root);
     signInWithPopup(auth, GoogleProvider)
       .then((result) => {
         axios
