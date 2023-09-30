@@ -190,11 +190,12 @@ const Video = () => {
   }, [path]);
 
   return (
+    // currentVideo &&
     <Container>
       <Content>
         <VideoWrapper>
           <VideoFrame
-            src={currentVideo.videoUrl}
+            src={currentVideo?.videoUrl}
             muted
             playsinline
             autoplay
@@ -203,10 +204,10 @@ const Video = () => {
           />
           {/* <ReactPlayer url={currentVideo.videoUrl} /> */}
         </VideoWrapper>
-        <Title>{currentVideo.title}</Title>
+        <Title>{currentVideo?.title}</Title>
         <Details>
           <Info>
-            {currentVideo.views} views {format(currentVideo.createdAt)}
+            {currentVideo?.views} views {format(currentVideo.createdAt)}
           </Info>
           <Buttons>
             <Button onClick={likeVideo}>
