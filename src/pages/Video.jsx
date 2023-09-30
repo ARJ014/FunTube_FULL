@@ -187,7 +187,7 @@ const Video = () => {
       }
     };
     fetch();
-  }, [path, currentVideo]);
+  }, [path]);
 
   return (
     currentVideo && (
