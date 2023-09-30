@@ -187,81 +187,84 @@ const Video = () => {
       }
     };
     fetch();
-  }, [path]);
+  }, [path, currentVideo]);
 
   return (
-    // currentVideo &&
-    <Container>
-      <Content>
-        <VideoWrapper>
-          <VideoFrame
-            src={currentVideo?.videoUrl}
-            muted
-            playsinline
-            autoplay
-            controls
-            onEnded={handleEnd}
-          />
-          {/* <ReactPlayer url={currentVideo.videoUrl} /> */}
-        </VideoWrapper>
-        <Title>{currentVideo?.title}</Title>
-        <Details>
-          <Info>
-            {currentVideo?.views} views {format(currentVideo.createdAt)}
-          </Info>
-          <Buttons>
-            <Button onClick={likeVideo}>
-              {currentVideo.likes?.includes(currentUser._id) ? (
-                <ThumbUpIcon />
-              ) : (
-                <ThumbUpOutlinedIcon />
-              )}
-              {currentVideo.likes.length}
-            </Button>
-            <Button onClick={dislikeVideo}>
-              {currentVideo.dislikes?.includes(currentUser._id) ? (
-                <ThumbDownIcon />
-              ) : (
-                <ThumbDownOffAltOutlinedIcon />
-              )}
-              {currentVideo.dislikes.length}
-            </Button>
-            <Button>
-              <ReplyOutlinedIcon /> Share
-            </Button>
-            <Button>
-              <AddTaskOutlinedIcon /> Save
-            </Button>
-          </Buttons>
-        </Details>
-        <Hr />
-        <Channel>
-          <ChannelInfo>
-            <Image src={channel.image} />
-            <ChannelDetail>
-              <ChannelName>{channel.name}</ChannelName>
-              <ChannelCounter>{channel.subscribers} subscribers</ChannelCounter>
-              <Description>{currentVideo.desc}</Description>
-            </ChannelDetail>
-          </ChannelInfo>
-          <Subscribe
-            onClick={handleSubscribe}
-            type={
-              currentUser.subscribedUsers.includes(channel._id)
+    currentVideo && (
+      <Container>
+        <Content>
+          <VideoWrapper>
+            <VideoFrame
+              src={currentVideo?.videoUrl}
+              muted
+              playsinline
+              autoplay
+              controls
+              onEnded={handleEnd}
+            />
+            {/* <ReactPlayer url={currentVideo.videoUrl} /> */}
+          </VideoWrapper>
+          <Title>{currentVideo?.title}</Title>
+          <Details>
+            <Info>
+              {currentVideo?.views} views {format(currentVideo?.createdAt)}
+            </Info>
+            <Buttons>
+              <Button onClick={likeVideo}>
+                {currentVideo?.likes?.includes(currentUser._id) ? (
+                  <ThumbUpIcon />
+                ) : (
+                  <ThumbUpOutlinedIcon />
+                )}
+                {currentVideo?.likes.length}
+              </Button>
+              <Button onClick={dislikeVideo}>
+                {currentVideo?.dislikes?.includes(currentUser._id) ? (
+                  <ThumbDownIcon />
+                ) : (
+                  <ThumbDownOffAltOutlinedIcon />
+                )}
+                {currentVideo?.dislikes.length}
+              </Button>
+              <Button>
+                <ReplyOutlinedIcon /> Share
+              </Button>
+              <Button>
+                <AddTaskOutlinedIcon /> Save
+              </Button>
+            </Buttons>
+          </Details>
+          <Hr />
+          <Channel>
+            <ChannelInfo>
+              <Image src={channel.image} />
+              <ChannelDetail>
+                <ChannelName>{channel.name}</ChannelName>
+                <ChannelCounter>
+                  {channel.subscribers} subscribers
+                </ChannelCounter>
+                <Description>{currentVideo?.desc}</Description>
+              </ChannelDetail>
+            </ChannelInfo>
+            <Subscribe
+              onClick={handleSubscribe}
+              type={
+                currentUser.subscribedUsers.includes(channel._id)
+                  ? "Subscribed"
+                  : "Subscribe"
+              }
+            >
+              {currentUser.subscribedUsers.includes(channel._id)
                 ? "Subscribed"
-                : "Subscribe"
-            }
-          >
-            {currentUser.subscribedUsers.includes(channel._id)
-              ? "Subscribed"
-              : "Subscribe"}
-          </Subscribe>
-        </Channel>
-        <Hr />
-        <Comments videoId={path} />
-      </Content>
-      <Recommendation tags={currentVideo.tags} videoId={currentVideo._id} />
-    </Container>
+                : "Subscribe"}
+            </Subscribe>
+          </Channel>
+          <Hr />
+          <Comments videoId={path} />
+        </Content>
+        <Recommendation tags={currentVideo?.tags} videoId={currentVideo?._id} />
+      </Container>
+    )
   );
 };
 
